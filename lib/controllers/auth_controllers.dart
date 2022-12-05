@@ -10,6 +10,7 @@ class AuthControllers extends GetxController {
   static const register = "https://reqres.in/api/register";
 
   bool isLoading = false;
+  bool isLoadingSecond = false;
 
   // login
   Future<LoginResponse> loginRequest() async {
@@ -31,10 +32,14 @@ class AuthControllers extends GetxController {
 
   // register
   Future<RegisterResponse> registerRequest() async {
+    isLoadingSecond = true;
+    update();
     var response = await http.post(Uri.parse(register), body: {
       "email": 'eve.holt@reqres.in',
       "password": 'pistol',
     });
+    isLoadingSecond = false;
+    update();
     if (response.statusCode == 200) {
       return RegisterResponse.fromJson(json.decode(response.body));
     } else {

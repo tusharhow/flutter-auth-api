@@ -27,7 +27,7 @@ class MyHomePage extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                authControllers.isLoading
+                authControllers.isLoadingSecond
                     ? const CircularProgressIndicator()
                     : Center(
                         child: ElevatedButton(
